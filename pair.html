@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VISPER Pair section</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right top, #f72585, #3a0ca3);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(18px);
+      border-radius: 20px;
+      padding: 40px 30px;
+      max-width: 420px;
+      width: 100%;
+      color: #111827;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      animation: fadeIn 0.7s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #e2e8f0;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    .input-container {
+      display: flex;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    input {
+      flex: 1;
+      padding: 14px;
+      font-size: 16px;
+      border: none;
+      outline: none;
+      color: #111827;
+    }
+
+    button {
+      background: linear-gradient(45deg, #f72585, #7209b7);
+      color: white;
+      padding: 0 20px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(45deg, #f502d4, #3b82f6);
+    }
+
+    button.loading::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      width: 14px;
+      height: 14px;
+      border: 2px solid #fff;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      transform: translateY(-50%);
+    }
+
+    button.loading {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    @keyframes spin {
+      to {
+        transform: translateY(-50%) rotate(360deg);
+      }
+    }
+
+    .response-area {
+      margin-top: 25px;
+    }
+
+    .code-box {
+      background: #f3f4f6;
+      border-radius: 10px;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 17px;
+      box-shadow: inset 2px 2px 6px #e5e7eb;
+      color: #111827;
+      margin-top: 10px;
+    }
+
+    .copy-btn {
+      background: #3b82f6;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .copy-btn:hover {
+      background: #f502d4;
+    }
+
+    .error {
+      color: #ff4d4d;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 30px 20px;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+      }
+
+      .input-container {
+        flex-direction: column;
+      }
+
+      input, button {
+        width: 100%;
+        border-radius: 0;
+      }
+
+      button {
+        border-top: 1px solid #e5e7eb;
+      }
+
+      .code-box {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h3>Visper MD</h3>
+    <p>Enter your WhatsApp number with country code</p>
+
+    <div class="input-container">
+      <input id="number" type="number" placeholder="94712345678" />
+      <button id="submit"><span id="submit-text">Submit</span></button>
+    </div>
+
+    <div class="response-area" id="pair"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const submitBtn = document.getElementById("submit");
+    const input = document.getElementById("number");
+    const pair = document.getElementById("pair");
+    const submitText = document.getElementById("submit-text");
+
+    async function copyToClipboard(text) {
+      await navigator.clipboard.writeText(text);
+      alert("Code copied: " + text);
+    }
+
+    submitBtn.addEventListener("click", async (e) => {
+      e.preventDefault();
+      const number = input.value.trim().replace(/[^0-9]/g, "");
+
+      if (!number) {
+        pair.innerHTML = `<p class="error">Please enter your number.</p>`;
+        return;
+      }
+
+      if (number.length < 11) {
+        pair.innerHTML = `<p class="error">Invalid number format.</p>`;
+        return;
+      }
+
+      submitBtn.classList.add("loading");
+      submitText.textContent = "Submitting...";
+      pair.innerHTML = `<p>Loading...</p>`;
+
+      try {
+        const res = await axios(`/code?number=${number}`);
+        const code = res.data.code || "Unavailable";
+
+        pair.innerHTML = `
+          <div class="code-box">
+            <span>CODE: ${code}</span>
+            <button class="copy-btn" onclick="copyToClipboard('${code}')">📋 Copy</button>
+          </div>
+        `;
+      } catch (err) {
+        pair.innerHTML = `<p class="error">Something went wrong. Try again later.</p>`;
+      }
+
+      submitBtn.classList.remove("loading");
+      submitText.textContent = "Submit";
+    });
+  </script>
+
+</body>
+</html>
+
+
