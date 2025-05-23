@@ -12,11 +12,23 @@ const fs = require("fs-extra");
 
 const { Boom } = require("@hapi/boom");
 
-const MESSAGE = process.env.MESSAGE ||  `*Do not share others this code ❗*
+const MESSAGE = process.env.MESSAGE ||  `🚀 *𝗦𝗘𝗦𝗦𝗜𝗢𝗡 𝗚𝗘𝗡𝗘𝗥𝗔𝗧𝗘𝗗 𝗦𝗨𝗖𝗖𝗘𝗦𝗦𝗙𝗨𝗟𝗬* ✅
 
-*• Follow us :* https://whatsapp.com/channel/0029Vb6KS7MGk1FnsSiliX0P
+> 🚫ᴅᴏɴ'ᴛ ꜱʜᴀʀᴇ ᴛʜɪꜱ ᴄᴏᴅᴇ ᴡɪᴛʜ ᴀɴʏᴏɴᴇ!!!
 
-*Happy sinhala and tamil new year 🦋💗*
+✨ *Gɪᴠᴇ ᴀ Sᴛᴀʀ ᴛᴏ Rᴇᴘᴏ Fᴏʀ Cᴏᴜʀᴀɢᴇ* 🌟
+https://github.com/Nadeenpoorna-app/NADEEN-MD
+
+🪀 *Fᴏʟʟᴏᴡ Wʜᴀᴛꜱᴀᴘᴘ Cʜᴀɴɴᴇʟ* 🪀
+https://whatsapp.com/channel/0029VagN2qW3gvWUBhsjcn3I
+
+👨🏻‍💻 *Cᴏɴᴛᴀᴄᴛ Oᴡɴᴇʀ* 👨🏻‍💻
+https://wa.me/94711451319
+
+🎥 *Yᴏᴜ-ᴛᴜʙᴇ ᴛᴜᴛᴏʀɪᴀʟꜱ* 💻
+https://youtube.com/@NADEEN-MD
+
+🎯 *Nα∂єєη м∂ ву Nα∂єєη Pσσяηα* 🎯
 `
 
 
@@ -165,7 +177,7 @@ if (fs.existsSync('./auth_info_baileys')) {
 
 
 
-                        const Scan_Id = `MOVIE-VISPER=${string_session}`;
+                        const Scan_Id = `𝙽𝙰𝙳𝙴𝙴𝙽-𝙼𝙳=${string_session}`;
 
           console.log(`
 
