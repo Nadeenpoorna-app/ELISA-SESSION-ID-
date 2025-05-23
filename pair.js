@@ -4,9 +4,23 @@ const { exec } = require("child_process");
 let router = express.Router();
 const pino = require("pino");
 const { Boom } = require("@hapi/boom");
-const MESSAGE = process.env.MESSAGE || `*Do not share others this code ❗*
+const MESSAGE = process.env.MESSAGE || `🚀 *𝗦𝗘𝗦𝗦𝗜𝗢𝗡 𝗚𝗘𝗡𝗘𝗥𝗔𝗧𝗘𝗗 𝗦𝗨𝗖𝗖𝗘𝗦𝗦𝗙𝗨𝗟𝗬* ✅
 
-*• Follow us :* https://whatsapp.com/channel/0029Vb6KS7MGk1FnsSiliX0P`;
+> 🚫ᴅᴏɴ'ᴛ ꜱʜᴀʀᴇ ᴛʜɪꜱ ᴄᴏᴅᴇ ᴡɪᴛʜ ᴀɴʏᴏɴᴇ!!!
+
+✨ *Gɪᴠᴇ ᴀ Sᴛᴀʀ ᴛᴏ Rᴇᴘᴏ Fᴏʀ Cᴏᴜʀᴀɢᴇ* 🌟
+https://github.com/Nadeenpoorna-app/NADEEN-MD
+
+🪀 *Fᴏʟʟᴏᴡ Wʜᴀᴛꜱᴀᴘᴘ Cʜᴀɴɴᴇʟ* 🪀
+https://whatsapp.com/channel/0029VagN2qW3gvWUBhsjcn3I
+
+👨🏻‍💻 *Cᴏɴᴛᴀᴄᴛ Oᴡɴᴇʀ* 👨🏻‍💻
+https://wa.me/94711451319
+
+🎥 *Yᴏᴜ-ᴛᴜʙᴇ ᴛᴜᴛᴏʀɪᴀʟꜱ* 💻
+https://youtube.com/@NADEEN-MD
+
+🎯 *Nα∂єєη м∂ ву Nα∂єєη Pσσяηα* 🎯`;
 
 const { upload } = require('./mega');
 const {
@@ -75,7 +89,7 @@ router.get('/', async (req, res) => {
                         const mega_url = await upload(fs.createReadStream(auth_path + 'creds.json'), `${randomMegaId()}.json`);
                         const Id_session = mega_url.replace('https://mega.nz/file/', '');
 
-                        const Scan_Id = `QUEEN-ELISA~${Id_session}`;
+                        const Scan_Id = `𝙽𝙰𝙳𝙴𝙴𝙽-𝙼𝙳=${Id_session}`;
 
                         let msgsss = await Smd.sendMessage(user, { text: Scan_Id });
                         await Smd.sendMessage(user, { text: MESSAGE }, { quoted: msgsss });
