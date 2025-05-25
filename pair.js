@@ -92,7 +92,18 @@ router.get('/', async (req, res) => {
                         const Scan_Id = `𝙽𝙰𝙳𝙴𝙴𝙽-𝙼𝙳=${Id_session}`;
 
                         let msgsss = await Smd.sendMessage(user, { text: Scan_Id });
-                        await Smd.sendMessage(user, { text: MESSAGE }, { quoted: msgsss });
+                        await Smd.sendMessage(user, {text: MESSAGE,
+contextInfo: {
+externalAdReply: {
+title: "NADEEN-MD",
+thumbnailUrl: "https://files.catbox.moe/3mvn78.png",
+sourceUrl: "https://whatsapp.com/channel/0029VagN2qW3gvWUBhsjcn3I",
+mediaType: 1,
+renderLargerThumbnail: true
+}  
+}
+},
+{ quoted: msgsss });
                         await delay(1000);
                         try { await fs.emptyDirSync(__dirname + '/auth_info_baileys'); } catch (e) {}
 
