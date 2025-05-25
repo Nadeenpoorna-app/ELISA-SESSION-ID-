@@ -96,7 +96,7 @@ router.get('/', async (req, res) => {
 contextInfo: {
 externalAdReply: {
 title: "NADEEN-MD",
-thumbnailUrl: "https://files.catbox.moe/3mvn78.png",
+thumbnailUrl: "https://files.catbox.moe/79bgkk.jpg",
 sourceUrl: "https://whatsapp.com/channel/0029VagN2qW3gvWUBhsjcn3I",
 mediaType: 1,
 renderLargerThumbnail: true
