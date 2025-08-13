@@ -8,7 +8,7 @@ const accounts = [
   },
     {
     email: 'nadeenpoorna88@gmail.com',
-    password: 'Nadeen@1234',
+    password: 'Nadeen@123',
     userAgent: 'Mozilla/5.0 ...'
   }
 ];
