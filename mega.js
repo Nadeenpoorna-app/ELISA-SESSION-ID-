@@ -2,8 +2,8 @@ const mega = require("megajs");
 
 const accounts = [
   {
-    email: 'nadeenpoorna70@gmail.com',
-    password: '@123Nadeen',
+    email: 'nadeenpoornagit@gmail.com',
+    password: 'Nadeen@123',
     userAgent: 'Mozilla/5.0 ...'
   },
     {
