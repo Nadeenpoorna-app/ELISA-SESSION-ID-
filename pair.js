@@ -23,14 +23,14 @@ https://youtube.com/@NADEEN-MD
 🎯 *Nα∂єєη м∂ ву Nα∂єєη Pσσяηα* 🎯`;
 
 const { upload } = require('./mega');
-const {
-    default: makeWASocket,
-    useMultiFileAuthState,
-    delay,
-    makeCacheableSignalKeyStore,
-    Browsers,
-    DisconnectReason
-} = require("@whiskeysockets/baileys");
+import {
+  default as makeWASocket,
+  useMultiFileAuthState,
+  delay,
+  makeCacheableSignalKeyStore,
+  Browsers,
+  DisconnectReason
+} from '@whiskeysockets/baileys';
 
 // Ensure the directory is empty when the app starts
 if (fs.existsSync('./auth_info_baileys')) {
